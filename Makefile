@@ -61,9 +61,7 @@ components-tag: $(foreach component, $(COMPONENTS), tag-component-$(component))
 
 test-component-%:
 	@echo "Checking syntax for the $* component"
-	@printf -- "---\n- hosts: localhost\n  roles:\n    - $*" > test.yml
-	@ansible-playbook test.yml -i inventory --syntax-check
-	@rm test.yml
+	@ansible-playbook $*/tests/test.yml -i $*/tests/inventory --syntax-check
 
 component-%: test-component-%
 	git checkout $(CURRENT_BRANCH) > /dev/null
