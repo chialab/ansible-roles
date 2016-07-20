@@ -23,4 +23,4 @@
     url: https://getcomposer.org/composer.phar
     dest: /usr/local/bin/composer
     mode: "0777"
-  when: "{{ php5_composer }}"
+  when: php5_composer
