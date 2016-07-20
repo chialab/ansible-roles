@@ -1,0 +1,26 @@
+---
+- name: install php5
+  become: yes
+  apt:
+    name: php5-cli
+
+- name: install php5 packages
+  become: yes
+  apt:
+    name: php5-{{ item }}
+  with_items: "{{ php5_extensions }}"
+
+- name: enable installed php5 packages
+  become: yes
+  shell: php5enmod {{ item }}
+  args:
+    creates: /etc/php5/cli/conf.d/20-{{ item }}.ini
+  with_items: "{{ php5_extensions }}"
+
+- name: install composer
+  become: yes
+  get_url:
+    url: https://getcomposer.org/composer.phar
+    dest: /usr/local/bin/composer
+    mode: "0777"
+  when: "{{ php5_composer }}"

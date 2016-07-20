@@ -5,7 +5,7 @@
 
 # Use the version number to figure out if the release is a pre-release
 PRERELEASE=$(shell echo $(VERSION) | grep -E 'dev|rc|alpha|beta' --quiet && echo 'true' || echo 'false')
-COMPONENTS=couchdb letsencrypt-standalone
+COMPONENTS=couchdb letsencrypt-standalone php5
 COMPONENTS_DIR=.
 COMPONENTS_PREFIX=ansible-
 COMPONENTS_HOST=git@github.com

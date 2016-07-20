@@ -1,0 +1,11 @@
+---
+php5_composer: yes
+
+php5_extensions:
+  - curl
+  - gd
+  - intl
+  - mcrypt
+  - mysql
+  - redis
+  - xcache
