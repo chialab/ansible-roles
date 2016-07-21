@@ -3,7 +3,7 @@ galaxy_info:
   description: Ansible role to install PHP5
   company: Chialab srl
 
-  issue_tracker_url: https://github.com/Chialab/ansible-couchdb/issues
+  issue_tracker_url: https://github.com/Chialab/ansible-php5/issues
   license: MIT
 
   min_ansible_version: 2.0
