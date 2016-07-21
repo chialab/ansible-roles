@@ -1,11 +1,13 @@
 ---
 - name: copy motd
+  become: yes
   copy:
     content: "{{ motd }}"
     dest: /etc/motd
   when: motd is defined
 
 - name: install locales
+  become: yes
   locale_gen:
     name: "{{ item }}"
     state: present
