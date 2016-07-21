@@ -1,6 +1,7 @@
 ---
 - hosts: all
   roles:
+    - common
     - couchdb
     - letsencrypt-standalone
     - php5

@@ -1,0 +1,12 @@
+---
+- name: copy motd
+  copy:
+    content: "{{ motd }}"
+    dest: /etc/motd
+  when: motd is defined
+
+- name: install locales
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ locales }}"
