@@ -1,11 +1,13 @@
 ---
 - name: create groups
+  become: yes
   group:
     name: "{{ item }}"
     state: present
   with_items: "{{ users_groups }}"
 
 - name: create user
+  become: yes
   user:
     name: "{{ item.key }}"
     password: "{{ item.value.password | default(omit) }}"
@@ -18,6 +20,7 @@
   when: item.value.skip_creation is undefined or item.value.skip_creation
 
 - name: add ssh keys from url
+  become: yes
   authorized_key:
     user: "{{ item.key }}"
     key: "{{ item.value.ssh_keys_url }}"
@@ -25,6 +28,7 @@
   when: item.value.ssh_keys_url is defined
 
 - name: add ssh keys
+  become: yes
   authorized_key:
     user: "{{ item.key }}"
     key: "{{ item.value.ssh_keys | join('\n') }}"
@@ -32,6 +36,7 @@
   when: item.value.ssh_keys is defined
 
 - name: ensure .ssh folder exists in home directory
+  become: yes
   file:
     path: ~{{ item.key }}/.ssh
     state: directory
@@ -42,6 +47,7 @@
   when: item.value.ssh_key_private is defined or item.value.ssh_key_public is defined
 
 - name: install ssh private key
+  become: yes
   copy:
     content: "{{ item.value.ssh_key_private }}"
     dest: ~{{ item.key }}/.ssh/id_rsa
@@ -52,6 +58,7 @@
   when: item.value.ssh_key_private is defined
 
 - name: install ssh public key
+  become: yes
   copy:
     content: "{{ item.value.ssh_key_public }}"
     dest: ~{{ item.key }}/.ssh/id_rsa.pub
