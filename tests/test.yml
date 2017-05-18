@@ -5,3 +5,4 @@
     - couchdb
     - letsencrypt-standalone
     - php5
+    - users
