@@ -21,6 +21,7 @@ A dictionary of users to be created, where:
 - an *optional* key `generate_ssh_key` is a boolean value to decide if a private/public key pair should be generated for the user
 - an *optional* key `ssh_key_public` is a public key to be written in `$HOME/.ssh/id_rsa.pub`
 - an *optional* key `ssh_key_private` is a private key to be written in `$HOME/.ssh/id_rsa`
+- an *optional* key `ps1` is the PS1 string to set for the user
 
 Example
 -------

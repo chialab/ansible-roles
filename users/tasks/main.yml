@@ -67,3 +67,15 @@
     mode: "0600"
   with_dict: "{{ users }}"
   when: item.value.ssh_key_public is defined
+
+- name: set up ps1
+  become: yes
+  lineinfile:
+    path: ~{{ item.key }}/.bashrc
+    regexp: "/^(\\s*)PS1=.*\\\\033/"
+    line: "\\1PS1='{{ item.ps1 }}'"
+    owner: "{{ item.key }}"
+    group: "{{ item.value.group | default(omit) }}"
+    mode: "0644"
+  with_dict: "{{ users }}"
+  when: item.value.ps1 is defined
