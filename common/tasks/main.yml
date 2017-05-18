@@ -6,6 +6,12 @@
     dest: /etc/motd
   when: motd is defined
 
+- name: install package for locales
+  become: yes
+  apt:
+    name: locales
+    state: present
+
 - name: install locales
   become: yes
   locale_gen:
