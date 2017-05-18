@@ -1,8 +1,12 @@
 ---
-- hosts: all
+- hosts: trusty
   roles:
     - common
     - couchdb
     - letsencrypt-standalone
     - php5
+    - users
+- hosts: xenial
+  roles:
+    - common
     - users

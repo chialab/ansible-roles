@@ -8,19 +8,40 @@ cpus = 1
 memory = 512
 
 Vagrant.configure(2) do |config|
-    config.vm.box = "ubuntu/trusty64"
-    config.vm.hostname = "#{hostname}.chialab.local"
+    # Ubuntu 14.04 Trusty
+    config.vm.define :trusty do |trusty|
+        trusty.vm.box = "ubuntu/trusty64"
+        trusty.vm.hostname = "#{hostname}-trusty.chialab.local"
 
-    # VirtualBox provider settings:
-    config.vm.provider "virtualbox" do |vb|
-        vb.name = "#{name}"
-        vb.customize [
-            "modifyvm", :id,
-            "--groups", "/Vagrant"
-        ]
+        # VirtualBox provider settings:
+        trusty.vm.provider "virtualbox" do |vb|
+            vb.name = "#{name} (14.04 Trusty)"
+            vb.customize [
+                "modifyvm", :id,
+                "--groups", "/Vagrant"
+            ]
 
-        vb.cpus = cpus
-        vb.memory = memory
+            vb.cpus = cpus
+            vb.memory = memory
+        end
+    end
+
+    # Ubuntu 16.04 Xenial
+    config.vm.define :xenial do |xenial|
+        xenial.vm.box = "ubuntu/xenial64"
+        xenial.vm.hostname = "#{hostname}-xenial.chialab.local"
+
+        # VirtualBox provider settings:
+        xenial.vm.provider "virtualbox" do |vb|
+            vb.name = "#{name} (16.04 Xenial)"
+            vb.customize [
+                "modifyvm", :id,
+                "--groups", "/Vagrant"
+            ]
+
+            vb.cpus = cpus
+            vb.memory = memory
+        end
     end
 
     # Install Ansible via PIP and Git via APT:
