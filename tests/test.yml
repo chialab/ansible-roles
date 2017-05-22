@@ -4,9 +4,11 @@
     - common
     - couchdb
     - letsencrypt-standalone
+    - ntp
     - php5
     - users
 - hosts: xenial
   roles:
     - common
+    - ntp
     - users

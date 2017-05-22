@@ -1,0 +1,21 @@
+---
+galaxy_info:
+  author: Chialab srl <dev@chialab.io>
+  description: Ansible role to set up and configure NTP.
+  company: Chialab srl
+
+  issue_tracker_url: https://github.com/Chialab/ansible-ntp/issues
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+
+  galaxy_tags:
+    - ntp
+
+dependencies: []
